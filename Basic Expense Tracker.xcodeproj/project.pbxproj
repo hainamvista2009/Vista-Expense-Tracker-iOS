@@ -14,6 +14,9 @@
 		B04FE7212FE0015A00ADE0C8 /* Basic_Expense_TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04FE7202FE0015A00ADE0C8 /* Basic_Expense_TrackerTests.swift */; };
 		B04FE72B2FE0015A00ADE0C8 /* Basic_Expense_TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04FE72A2FE0015A00ADE0C8 /* Basic_Expense_TrackerUITests.swift */; };
 		B04FE72D2FE0015A00ADE0C8 /* Basic_Expense_TrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04FE72C2FE0015A00ADE0C8 /* Basic_Expense_TrackerUITestsLaunchTests.swift */; };
+		B04FE73A2FE0023800ADE0C8 /* ExpenseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04FE7392FE0023800ADE0C8 /* ExpenseRow.swift */; };
+		B04FE73C2FE0024B00ADE0C8 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04FE73B2FE0024B00ADE0C8 /* AddExpenseView.swift */; };
+		B0EB7E3C2FE0D555006B37EF /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB7E3B2FE0D555006B37EF /* Expense.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		B04FE7262FE0015A00ADE0C8 /* Basic Expense TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Basic Expense TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B04FE72A2FE0015A00ADE0C8 /* Basic_Expense_TrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basic_Expense_TrackerUITests.swift; sourceTree = "<group>"; };
 		B04FE72C2FE0015A00ADE0C8 /* Basic_Expense_TrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basic_Expense_TrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B04FE7392FE0023800ADE0C8 /* ExpenseRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRow.swift; sourceTree = "<group>"; };
+		B04FE73B2FE0024B00ADE0C8 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
+		B0EB7E3B2FE0D555006B37EF /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,9 @@
 				B04FE7112FE0015900ADE0C8 /* ContentView.swift */,
 				B04FE7132FE0015A00ADE0C8 /* Assets.xcassets */,
 				B04FE7152FE0015A00ADE0C8 /* Preview Content */,
+				B04FE7392FE0023800ADE0C8 /* ExpenseRow.swift */,
+				B04FE73B2FE0024B00ADE0C8 /* AddExpenseView.swift */,
+				B0EB7E3B2FE0D555006B37EF /* Expense.swift */,
 			);
 			path = "Basic Expense Tracker";
 			sourceTree = "<group>";
@@ -258,7 +267,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B04FE7122FE0015900ADE0C8 /* ContentView.swift in Sources */,
+				B04FE73A2FE0023800ADE0C8 /* ExpenseRow.swift in Sources */,
 				B04FE7102FE0015900ADE0C8 /* Basic_Expense_TrackerApp.swift in Sources */,
+				B04FE73C2FE0024B00ADE0C8 /* AddExpenseView.swift in Sources */,
+				B0EB7E3C2FE0D555006B37EF /* Expense.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,11 +432,13 @@
 				DEVELOPMENT_TEAM = TG4VB93PGP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Vista Expense Tracker";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -449,11 +463,13 @@
 				DEVELOPMENT_TEAM = TG4VB93PGP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Vista Expense Tracker";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
