@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+enum DateFilter: String, CaseIterable {
+
+    case all = "All"
+    case today = "Today"
+    case week = "This Week"
+    case month = "This Month"
+    case year = "This Year"
+}
+
 struct ContentView: View {
     private let expensesKey = "savedExpenses"
     
@@ -15,6 +24,7 @@ struct ContentView: View {
     @State private var expenses: [Expense] = []
     @State private var showCategoryTotals = false
     @State private var searchText = ""
+    @State private var selectedDateFilter: DateFilter = .all
     
     var totalSpent: Double {
             expenses.reduce(0) { total, expense in
@@ -102,7 +112,27 @@ struct ContentView: View {
                         }
 
                     }
+                    
+                    // Date Picker
+                    Picker(
+                        "Date Filter",
+                        selection: $selectedDateFilter
+                    ) {
 
+                        ForEach(
+                            DateFilter.allCases,
+                            id: \.self
+                        ) { filter in
+
+                            Text(filter.rawValue)
+                                .tag(filter)
+
+                        }
+
+                    }
+                    .pickerStyle(.segmented)
+                    .padding(.horizontal)
+                    
                     // Expense List
                     if expenses.isEmpty {
 
@@ -166,7 +196,7 @@ struct ContentView: View {
 
                     }
                 }
-                .navigationTitle("Expense Tracker")
+                .navigationTitle("Vista Expense Tracker")
                 .searchable(
                     text: $searchText,
                     prompt: "Search expenses..."
