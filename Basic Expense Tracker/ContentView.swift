@@ -183,6 +183,10 @@ struct ContentView: View {
                                             note: expense.note,
                                             createdAt: expense.createdAt
                                         )
+                                        .contentShape(Rectangle())
+                                        .onTapGesture {
+                                            selectedExpense = expense
+                                        }
 
                                     }
 
@@ -220,6 +224,17 @@ struct ContentView: View {
                 }
                 .sheet(isPresented: $showAddExpense) {
                     AddExpenseView(expenses: $expenses)
+                }
+                .sheet(item: $selectedExpense) { expense in
+
+                    if let binding = bindingForExpense(expense) {
+
+                        EditExpenseView(
+                            expense: binding
+                        )
+
+                    }
+
                 }
             }
             .onAppear {
