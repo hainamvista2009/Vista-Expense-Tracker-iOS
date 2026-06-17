@@ -5,3 +5,5 @@ Concepts learned: Using dropdown selectors, basic local persistent storage, and 
 Android implementation: Use a Spinner component for the categories. For simple local data saving, start out with SharedPreferences to save small lists as JSON strings before jumping into full databases.
 
 Xcode (iOS) implementation: Use a standard Picker view for categories, and use the simple @AppStorage wrapper or UserDefaults to save your data array to the device.
+
+### Built with Xcode 14.3 for iOS 16>
