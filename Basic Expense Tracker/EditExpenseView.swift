@@ -62,6 +62,18 @@ struct EditExpenseView: View {
             .toolbar {
 
                 ToolbarItem(
+                    placement: .navigationBarLeading
+                ) {
+
+                    Button("Cancel") {
+
+                        dismiss()
+
+                    }
+
+                }
+
+                ToolbarItem(
                     placement: .navigationBarTrailing
                 ) {
 
