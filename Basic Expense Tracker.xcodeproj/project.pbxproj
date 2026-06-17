@@ -16,6 +16,7 @@
 		B04FE72D2FE0015A00ADE0C8 /* Basic_Expense_TrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04FE72C2FE0015A00ADE0C8 /* Basic_Expense_TrackerUITestsLaunchTests.swift */; };
 		B04FE73A2FE0023800ADE0C8 /* ExpenseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04FE7392FE0023800ADE0C8 /* ExpenseRow.swift */; };
 		B04FE73C2FE0024B00ADE0C8 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04FE73B2FE0024B00ADE0C8 /* AddExpenseView.swift */; };
+		B0CDEA632FE243420064DCEB /* EditExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CDEA622FE243420064DCEB /* EditExpenseView.swift */; };
 		B0EB7E3C2FE0D555006B37EF /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB7E3B2FE0D555006B37EF /* Expense.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		B04FE72C2FE0015A00ADE0C8 /* Basic_Expense_TrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basic_Expense_TrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B04FE7392FE0023800ADE0C8 /* ExpenseRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRow.swift; sourceTree = "<group>"; };
 		B04FE73B2FE0024B00ADE0C8 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
+		B0CDEA622FE243420064DCEB /* EditExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseView.swift; sourceTree = "<group>"; };
 		B0EB7E3B2FE0D555006B37EF /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +109,7 @@
 				B04FE7392FE0023800ADE0C8 /* ExpenseRow.swift */,
 				B04FE73B2FE0024B00ADE0C8 /* AddExpenseView.swift */,
 				B0EB7E3B2FE0D555006B37EF /* Expense.swift */,
+				B0CDEA622FE243420064DCEB /* EditExpenseView.swift */,
 			);
 			path = "Basic Expense Tracker";
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				B04FE7102FE0015900ADE0C8 /* Basic_Expense_TrackerApp.swift in Sources */,
 				B04FE73C2FE0024B00ADE0C8 /* AddExpenseView.swift in Sources */,
 				B0EB7E3C2FE0D555006B37EF /* Expense.swift in Sources */,
+				B0CDEA632FE243420064DCEB /* EditExpenseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

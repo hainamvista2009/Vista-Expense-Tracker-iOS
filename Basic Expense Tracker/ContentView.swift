@@ -11,6 +11,7 @@ struct ContentView: View {
     private let expensesKey = "savedExpenses"
     
     @State private var showAddExpense = false
+    @State private var selectedExpense: Expense?
     @State private var expenses: [Expense] = []
     @State private var showCategoryTotals = false
     
@@ -139,7 +140,23 @@ struct ContentView: View {
                                     note: expense.note,
                                     createdAt: expense.createdAt
                                 )
+                                .onTapGesture {
 
+                                    selectedExpense = expense
+
+                                }
+                                .sheet(item: $selectedExpense) { expense in
+
+                                    if let binding =
+                                        bindingForExpense(expense) {
+
+                                        EditExpenseView(
+                                            expense: binding
+                                        )
+
+                                    }
+
+                                }
                             }
                             .onDelete(perform: deleteExpense)
 
@@ -256,6 +273,20 @@ struct ContentView: View {
 
     }
     
+    func bindingForExpense(
+        _ expense: Expense
+    ) -> Binding<Expense>? {
+
+        guard let index =
+            expenses.firstIndex(where: {
+                $0.id == expense.id
+            })
+        else {
+            return nil
+        }
+
+        return $expenses[index]
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {

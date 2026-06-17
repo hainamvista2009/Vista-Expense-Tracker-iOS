@@ -11,9 +11,9 @@ struct Expense: Identifiable, Codable, Equatable {
 
     let id: UUID
 
-    let amount: Double
-    let category: String
-    let note: String
+    var amount: Double
+    var category: String
+    var note: String
     let createdAt: Date
 
     init(
