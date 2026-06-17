@@ -381,13 +381,15 @@ struct ContentView: View {
         let calendar = Calendar.current
         let now = Date()
 
+        let dateFiltered: [Expense]
+
         switch selectedDateFilter {
 
         case .all:
-            return expenses
+            dateFiltered = expenses
 
         case .today:
-            return expenses.filter {
+            dateFiltered = expenses.filter {
                 calendar.isDateInToday($0.createdAt)
             }
 
@@ -403,7 +405,7 @@ struct ContentView: View {
                 return expenses
             }
 
-            return expenses.filter {
+            dateFiltered = expenses.filter {
                 $0.createdAt >= weekAgo
             }
 
@@ -419,10 +421,27 @@ struct ContentView: View {
                 return expenses
             }
 
-            return expenses.filter {
+            dateFiltered = expenses.filter {
                 $0.createdAt >= monthAgo
             }
 
+        }
+
+        if searchText.isEmpty {
+            return dateFiltered
+        }
+        
+        return dateFiltered.filter { expense in
+
+            expense.category.localizedCaseInsensitiveContains(searchText)
+
+            ||
+
+            expense.note.localizedCaseInsensitiveContains(searchText)
+
+        }
+        .sorted {
+            $0.createdAt > $1.createdAt
         }
 
     }
