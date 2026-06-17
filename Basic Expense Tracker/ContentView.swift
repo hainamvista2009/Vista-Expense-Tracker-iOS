@@ -159,35 +159,33 @@ struct ContentView: View {
 
                         List {
 
-                            ForEach(expenses) { expense in
+                            ForEach(
+                                groupedExpenses,
+                                id: \.0
+                            ) { date, expensesForDay in
 
-                                ExpenseRow(
-                                    icon: iconForCategory(expense.category),
-                                    category: expense.category,
-                                    amount: String(
-                                        format: "$%.2f",
-                                        expense.amount
-                                    ),
-                                    note: expense.note,
-                                    createdAt: expense.createdAt
-                                )
-                                .onTapGesture {
+                                Section(
+                                    header:
+                                        Text(sectionTitle(for: date))
+                                ) {
 
-                                    selectedExpense = expense
+                                    ForEach(expensesForDay) { expense in
 
-                                }
-                                .sheet(item: $selectedExpense) { expense in
-
-                                    if let binding =
-                                        bindingForExpense(expense) {
-
-                                        EditExpenseView(
-                                            expense: binding
+                                        ExpenseRow(
+                                            icon: iconForCategory(expense.category),
+                                            category: expense.category,
+                                            amount: String(
+                                                format: "$%.2f",
+                                                expense.amount
+                                            ),
+                                            note: expense.note,
+                                            createdAt: expense.createdAt
                                         )
 
                                     }
 
                                 }
+
                             }
                             .onDelete(perform: deleteExpense)
 
@@ -322,6 +320,46 @@ struct ContentView: View {
 
         return $expenses[index]
     }
+    
+    func sectionTitle(for date: Date) -> String {
+
+        let calendar = Calendar.current
+
+        if calendar.isDateInToday(date) {
+            return "Today"
+        }
+
+        if calendar.isDateInYesterday(date) {
+            return "Yesterday"
+        }
+
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+
+        return formatter.string(from: date)
+
+    }
+    
+    var groupedExpenses: [(Date, [Expense])] {
+
+        let grouped = Dictionary(
+            grouping: expenses
+        ) { expense in
+
+            Calendar.current.startOfDay(
+                for: expense.createdAt
+            )
+
+        }
+
+        return grouped
+            .sorted {
+                $0.key > $1.key
+            }
+
+    }
+    
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
