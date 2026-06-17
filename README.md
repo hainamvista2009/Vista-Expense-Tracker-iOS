@@ -2,11 +2,17 @@
 
 A clean and intuitive iOS expense tracking application built with SwiftUI. Track your spending by category, search expenses, and visualize your spending patterns with ease.
 
+## Status: 🚀 Public Internal Beta (v0.3)
+
+This is currently in **public internal beta** stage. We're actively developing new features and improving the app based on feedback. Thank you for being part of our beta testing journey!
+
+> **Note:** This repository is private during beta testing. Public access will be available upon official release.
+
 ## Overview
 
-Vista Expense Tracker is a personal finance management tool designed to help users monitor their daily expenses. Users can add expenses with specific amounts, categorize them, and add notes for each transaction. All data persists locally on the device, ensuring privacy and offline access.
+Vista Expense Tracker is a personal finance management tool designed to help users monitor their daily expenses. Users can add expenses with specific amounts, categorize them, and add notes for each transaction.
 
-**Key Concept:** A log where users can type in an expense amount, select a category, and see a history of what they spent. The data stays saved even if they close the app using SwiftUI's simple @AppStorage wrapper and UserDefaults for persistent local storage.
+**Key Concept:** A log where users can type in an expense amount, select a category, and see a history of what they spent. The data stays saved even if they close the app using SwiftUI's simple @AppStorage and Codable protocols.
 
 ## Current Features
 
@@ -40,15 +46,17 @@ Vista Expense Tracker is a personal finance management tool designed to help use
    - This Month
    - This Year
 
-✅ **Search Functionality** - Search through expenses using keywords
+✅ **Search Functionality** - Search through expenses using keywords to find specific transactions quickly
+
+✅ **Date-Sectioned List** - View expenses organized and grouped by date for better organization
+
+✅ **Edit Mode** - Edit button for bulk expense management
 
 ✅ **Persistent Storage** - Data automatically saves using UserDefaults and JSONEncoder/Decoder
 
 ✅ **Responsive UI** - Clean, intuitive interface with SwiftUI
 
 ✅ **Empty State** - Helpful message when no expenses exist
-
-✅ **Edit Mode** - Edit button for bulk expense management
 
 ## Technical Requirements
 
@@ -155,9 +163,10 @@ Supported filters with `DateFilter` enum:
 
 ## Version Information
 
-- **App Version:** 1.0
-- **Build Number:** 1
+- **App Version:** 0.3 (Public Internal Beta)
+- **Build Number:** 3
 - **Bundle Identifier:** Vista.Basic-Expense-Tracker
+- **Status:** 🚀 Beta Testing
 
 ## Technologies Used
 
@@ -178,6 +187,14 @@ The `Expense` struct stores:
 
 All expenses are automatically encoded to JSON and stored locally on device.
 
+## Beta Testing & Feedback
+
+We're in an active beta phase and appreciate your feedback! If you encounter any issues or have suggestions, please report them through:
+- Issue reporting (for beta testers)
+- Direct feedback channels
+
+Your input helps us improve Vista Expense Tracker!
+
 ## Future Enhancements
 
 Potential features for future versions:
@@ -188,6 +205,15 @@ Potential features for future versions:
 - 📱 iCloud sync
 - 🌙 Dark mode optimization
 - 💱 Multiple currency support
+- 📈 Monthly/yearly reports
+- 🔔 Spending notifications
+
+## Roadmap to Public Release
+
+- **v0.3** (Current) - Internal Beta with core features
+- **v0.4** - Bug fixes and performance improvements based on beta feedback
+- **v0.5** - Additional features and refinements
+- **v1.0** - Official public release
 
 ## License
 
@@ -199,4 +225,4 @@ Created by **Vista2009** (hainamvista2009)
 
 ---
 
-**Happy Expense Tracking! 💰**
+**Thank you for testing Vista Expense Tracker! Your feedback makes us better. 💰**
