@@ -13,7 +13,7 @@ enum DateFilter: String, CaseIterable {
     case today = "Today"
     case week = "This Week"
     case month = "This Month"
-    case year = "This Year"
+    //case year = "This Year"
 }
 
 struct ContentView: View {
@@ -27,9 +27,11 @@ struct ContentView: View {
     @State private var selectedDateFilter: DateFilter = .all
     
     var totalSpent: Double {
-            expenses.reduce(0) { total, expense in
-                total + expense.amount
-            }
+
+        filteredExpenses.reduce(0) {
+            $0 + $1.amount
+        }
+
     }
     
     func deleteExpense(at offsets: IndexSet) {
@@ -65,7 +67,7 @@ struct ContentView: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
 
-                        Text("\(expenses.count) expense(s)")
+                        Text("\(filteredExpenses.count) expense(s)")
                             .font(.caption)
                             .foregroundColor(.secondary)
 
@@ -295,7 +297,7 @@ struct ContentView: View {
     var categoryTotals: [String: Double] {
 
         Dictionary(
-            grouping: expenses,
+            grouping: filteredExpenses,
             by: { $0.category }
         )
         .mapValues { expenses in
@@ -343,7 +345,7 @@ struct ContentView: View {
     var groupedExpenses: [(Date, [Expense])] {
 
         let grouped = Dictionary(
-            grouping: expenses
+            grouping: filteredExpenses
         ) { expense in
 
             Calendar.current.startOfDay(
@@ -359,6 +361,56 @@ struct ContentView: View {
 
     }
     
+    var filteredExpenses: [Expense] {
+
+        let calendar = Calendar.current
+        let now = Date()
+
+        switch selectedDateFilter {
+
+        case .all:
+            return expenses
+
+        case .today:
+            return expenses.filter {
+                calendar.isDateInToday($0.createdAt)
+            }
+
+        case .week:
+
+            guard let weekAgo =
+                calendar.date(
+                    byAdding: .day,
+                    value: -7,
+                    to: now
+                )
+            else {
+                return expenses
+            }
+
+            return expenses.filter {
+                $0.createdAt >= weekAgo
+            }
+
+        case .month:
+
+            guard let monthAgo =
+                calendar.date(
+                    byAdding: .month,
+                    value: -1,
+                    to: now
+                )
+            else {
+                return expenses
+            }
+
+            return expenses.filter {
+                $0.createdAt >= monthAgo
+            }
+
+        }
+
+    }
     
 }
 
