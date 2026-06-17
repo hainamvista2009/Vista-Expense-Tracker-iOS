@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var selectedExpense: Expense?
     @State private var expenses: [Expense] = []
     @State private var showCategoryTotals = false
+    @State private var searchText = ""
     
     var totalSpent: Double {
             expenses.reduce(0) { total, expense in
@@ -166,6 +167,10 @@ struct ContentView: View {
                     }
                 }
                 .navigationTitle("Expense Tracker")
+                .searchable(
+                    text: $searchText,
+                    prompt: "Search expenses..."
+                )
                 .toolbar {
                     
                     ToolbarItem(placement: .navigationBarLeading) {
