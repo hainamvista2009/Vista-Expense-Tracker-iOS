@@ -195,7 +195,7 @@ This project is open source and available under the MIT License.
 
 ## Author
 
-Created by **Nguyen Nha** (hainamvista2009)
+Created by **Vista2009** (hainamvista2009)
 
 ---
 
