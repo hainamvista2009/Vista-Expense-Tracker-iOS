@@ -16,6 +16,17 @@ enum DateFilter: String, CaseIterable {
     //case year = "This Year"
 }
 
+enum CategoryFilter: String, CaseIterable {
+
+    case all = "All Categories"
+    case food = "Food"
+    case transport = "Transport"
+    case rent = "Rent"
+    case shopping = "Shopping"
+    case entertainment = "Entertainment"
+
+}
+
 struct ContentView: View {
     private let expensesKey = "savedExpenses"
     
@@ -25,6 +36,7 @@ struct ContentView: View {
     @State private var showCategoryTotals = false
     @State private var searchText = ""
     @State private var selectedDateFilter: DateFilter = .all
+    @State private var selectedCategory: CategoryFilter = .all
     
     var totalSpent: Double {
 
@@ -133,6 +145,63 @@ struct ContentView: View {
 
                     }
                     .pickerStyle(.segmented)
+                    .padding(.horizontal)
+                    
+                    Menu {
+
+                        ForEach(
+                            CategoryFilter.allCases,
+                            id: \.self
+                        ) { category in
+
+                            Button {
+
+                                selectedCategory = category
+
+                            } label: {
+
+                                if selectedCategory == category {
+
+                                    Label(
+                                        category.rawValue,
+                                        systemImage: "checkmark"
+                                    )
+
+                                } else {
+
+                                    Label(
+                                        category.rawValue,
+                                        systemImage:
+                                            iconForCategory(category.rawValue)
+                                    )
+
+                                }
+
+                            }
+
+                        }
+
+                    } label: {
+
+                        HStack {
+
+                            Image(
+                                systemName:
+                                    "line.3.horizontal.decrease.circle"
+                            )
+
+                            Text(selectedCategory.rawValue)
+
+                            Spacer()
+
+                            Image(systemName: "chevron.down")
+
+                        }
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(12)
+
+                    }
                     .padding(.horizontal)
                     
                     // Expense List
@@ -264,7 +333,7 @@ struct ContentView: View {
             return "tv.fill"
 
         default:
-            return "dollarsign.circle.fill"
+            return "wallet.pass.fill"
         }
     }
     func saveExpenses() {
@@ -426,12 +495,38 @@ struct ContentView: View {
             }
 
         }
+        
+        let categoryFiltered = dateFiltered.filter { expense in
 
-        if searchText.isEmpty {
-            return dateFiltered
+            switch selectedCategory {
+
+            case .all:
+                return true
+
+            case .food:
+                return expense.category == "Food"
+
+            case .transport:
+                return expense.category == "Transport"
+
+            case .rent:
+                return expense.category == "Rent"
+
+            case .shopping:
+                return expense.category == "Shopping"
+
+            case .entertainment:
+                return expense.category == "Entertainment"
+
+            }
+
         }
         
-        return dateFiltered.filter { expense in
+        if searchText.isEmpty {
+            return categoryFiltered
+        }
+        
+        return categoryFiltered.filter { expense in
 
             expense.category.localizedCaseInsensitiveContains(searchText)
 
