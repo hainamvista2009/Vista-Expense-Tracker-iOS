@@ -202,7 +202,6 @@ Potential features for future versions:
 - 📤 Export expenses to CSV
 - 💼 Budget setting and alerts
 - 🏷️ Custom categories
-- 📱 iCloud sync
 - 🌙 Dark mode optimization
 - 💱 Multiple currency support
 - 📈 Monthly/yearly reports
