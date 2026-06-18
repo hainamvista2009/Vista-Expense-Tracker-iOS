@@ -2,7 +2,7 @@
 
 A clean and intuitive iOS expense tracking application built with SwiftUI. Track your spending by category, search expenses, and visualize your spending patterns with ease.
 
-## Status: 🚀 Public Internal Beta (v0.3)
+## Status: 🚀 Public Internal Beta (v0.5)
 
 This is currently in **public internal beta** stage. We're actively developing new features and improving the app based on feedback. Thank you for being part of our beta testing journey!
 
@@ -163,8 +163,8 @@ Supported filters with `DateFilter` enum:
 
 ## Version Information
 
-- **App Version:** 0.3 (Public Internal Beta)
-- **Build Number:** 3
+- **App Version:** 0.5 (Public Internal Beta)
+- **Build Number:** 19
 - **Bundle Identifier:** Vista.Basic-Expense-Tracker
 - **Status:** 🚀 Beta Testing
 
