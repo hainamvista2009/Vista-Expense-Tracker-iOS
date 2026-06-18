@@ -7,6 +7,16 @@
 
 import SwiftUI
 
+enum Currency: String, CaseIterable {
+
+    case usd = "USD ($)"
+    case eur = "EUR (€)"
+    case gbp = "GBP (£)"
+    case jpy = "JPY (¥)"
+    case vnd = "VND (₫)"
+
+}
+
 enum DateFilter: String, CaseIterable {
 
     case all = "All"
@@ -37,6 +47,9 @@ struct ContentView: View {
     @State private var searchText = ""
     @State private var selectedDateFilter: DateFilter = .all
     @State private var selectedCategory: CategoryFilter = .all
+    @AppStorage("selectedCurrency")
+    private var selectedCurrency =
+        Currency.usd.rawValue
     
     var totalSpent: Double {
 
@@ -75,7 +88,12 @@ struct ContentView: View {
 
                         }
 
-                        Text(String(format: "$%.2f", totalSpent))
+                        Text(
+                            String(
+                                format: "\(currencySymbol())%.2f",
+                                totalSpent
+                            )
+                        )
                             .font(.largeTitle)
                             .fontWeight(.bold)
 
@@ -101,7 +119,7 @@ struct ContentView: View {
 
                                     Text(
                                         String(
-                                            format: "$%.2f",
+                                            format: "\(currencySymbol())%.2f",
                                             categoryTotals[category] ?? 0
                                         )
                                     )
@@ -246,7 +264,7 @@ struct ContentView: View {
                                             icon: iconForCategory(expense.category),
                                             category: expense.category,
                                             amount: String(
-                                                format: "$%.2f",
+                                                format: "\(currencySymbol())%.2f",
                                                 expense.amount
                                             ),
                                             note: expense.note,
@@ -268,6 +286,57 @@ struct ContentView: View {
                         .listStyle(.plain)
 
                     }
+                    Menu {
+
+                        ForEach(
+                            Currency.allCases,
+                            id: \.self
+                        ) { currency in
+
+                            Button {
+
+                                selectedCurrency =
+                                    currency.rawValue
+
+                            } label: {
+
+                                if selectedCurrency ==
+                                    currency.rawValue {
+
+                                    Label(
+                                        currency.rawValue,
+                                        systemImage: "checkmark"
+                                    )
+
+                                } else {
+
+                                    Text(currency.rawValue)
+
+                                }
+
+                            }
+
+                        }
+
+                    } label: {
+
+                        HStack {
+
+                            Image(systemName: "dollarsign.circle")
+
+                            Text(selectedCurrency)
+
+                            Spacer()
+
+                            Image(systemName: "chevron.down")
+
+                        }
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(12)
+
+                    }
+                    .padding(.horizontal)
                 }
                 .navigationTitle("Vista Expense Tracker")
                 .searchable(
@@ -540,7 +609,31 @@ struct ContentView: View {
         }
 
     }
-    
+    func currencySymbol() -> String {
+
+        switch selectedCurrency {
+
+        case Currency.usd.rawValue:
+            return "$"
+
+        case Currency.eur.rawValue:
+            return "€"
+
+        case Currency.gbp.rawValue:
+            return "£"
+
+        case Currency.jpy.rawValue:
+            return "¥"
+
+        case Currency.vnd.rawValue:
+            return "₫"
+
+        default:
+            return "$"
+
+        }
+
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
