@@ -48,9 +48,9 @@ struct ContentView: View {
     @State private var selectedDateFilter: DateFilter = .all
     @State private var selectedCategory: CategoryFilter = .all
     @State private var showSettings = false
-    @AppStorage("selectedCurrency")
-    private var selectedCurrency =
-        Currency.usd.rawValue
+    
+    @AppStorage("currency_preference")
+    private var selectedCurrency = "USD"
     
     var totalSpent: Double {
 
@@ -287,57 +287,7 @@ struct ContentView: View {
                         .listStyle(.plain)
 
                     }
-                    Menu {
-
-                        ForEach(
-                            Currency.allCases,
-                            id: \.self
-                        ) { currency in
-
-                            Button {
-
-                                selectedCurrency =
-                                    currency.rawValue
-
-                            } label: {
-
-                                if selectedCurrency ==
-                                    currency.rawValue {
-
-                                    Label(
-                                        currency.rawValue,
-                                        systemImage: "checkmark"
-                                    )
-
-                                } else {
-
-                                    Text(currency.rawValue)
-
-                                }
-
-                            }
-
-                        }
-
-                    } label: {
-
-                        HStack {
-
-                            Image(systemName: "dollarsign.circle")
-
-                            Text(selectedCurrency)
-
-                            Spacer()
-
-                            Image(systemName: "chevron.down")
-
-                        }
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .cornerRadius(12)
-
-                    }
-                    .padding(.horizontal)
+                    
                 }
                 .navigationTitle("Vista Expense Tracker")
                 .searchable(
@@ -627,19 +577,19 @@ struct ContentView: View {
 
         switch selectedCurrency {
 
-        case Currency.usd.rawValue:
+        case "USD":
             return "$"
 
-        case Currency.eur.rawValue:
+        case "EUR":
             return "€"
 
-        case Currency.gbp.rawValue:
+        case "GBP":
             return "£"
 
-        case Currency.jpy.rawValue:
+        case "JPY":
             return "¥"
 
-        case Currency.vnd.rawValue:
+        case "VND":
             return "₫"
 
         default:

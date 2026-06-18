@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 struct SettingsView: View {
-
+    @AppStorage("currency_preference")
+    private var selectedCurrency = "USD"
     var body: some View {
 
         NavigationStack {
@@ -20,15 +21,23 @@ struct SettingsView: View {
 
                     NavigationLink {
 
-                        Text("Currency Settings")
-                            .navigationTitle("Currency")
+                        CurrencySettingsView()
 
                     } label: {
 
-                        Label(
-                            "Currency",
-                            systemImage: "dollarsign.circle"
-                        )
+                        HStack {
+
+                            Label(
+                                "Currency",
+                                systemImage: "dollarsign.circle"
+                            )
+
+                            Spacer()
+
+                            Text(selectedCurrency)
+                                .foregroundColor(.secondary)
+
+                        }
 
                     }
 

@@ -18,6 +18,7 @@
 		B04FE73C2FE0024B00ADE0C8 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04FE73B2FE0024B00ADE0C8 /* AddExpenseView.swift */; };
 		B054F2F12FE3BD0900121587 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B054F2F02FE3BD0900121587 /* SettingsView.swift */; };
 		B054F2F32FE3BF5300121587 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B054F2F22FE3BF5200121587 /* Settings.bundle */; };
+		B054F2F52FE3C36500121587 /* CurrencySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B054F2F42FE3C36500121587 /* CurrencySettingsView.swift */; };
 		B0CDEA632FE243420064DCEB /* EditExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CDEA622FE243420064DCEB /* EditExpenseView.swift */; };
 		B0EB7E3C2FE0D555006B37EF /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB7E3B2FE0D555006B37EF /* Expense.swift */; };
 /* End PBXBuildFile section */
@@ -54,6 +55,7 @@
 		B04FE73B2FE0024B00ADE0C8 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
 		B054F2F02FE3BD0900121587 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B054F2F22FE3BF5200121587 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		B054F2F42FE3C36500121587 /* CurrencySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySettingsView.swift; sourceTree = "<group>"; };
 		B0CDEA622FE243420064DCEB /* EditExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseView.swift; sourceTree = "<group>"; };
 		B0EB7E3B2FE0D555006B37EF /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +118,7 @@
 				B0CDEA622FE243420064DCEB /* EditExpenseView.swift */,
 				B054F2F02FE3BD0900121587 /* SettingsView.swift */,
 				B054F2F22FE3BF5200121587 /* Settings.bundle */,
+				B054F2F42FE3C36500121587 /* CurrencySettingsView.swift */,
 			);
 			path = "Basic Expense Tracker";
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				B04FE7122FE0015900ADE0C8 /* ContentView.swift in Sources */,
 				B04FE73A2FE0023800ADE0C8 /* ExpenseRow.swift in Sources */,
 				B04FE7102FE0015900ADE0C8 /* Basic_Expense_TrackerApp.swift in Sources */,
+				B054F2F52FE3C36500121587 /* CurrencySettingsView.swift in Sources */,
 				B04FE73C2FE0024B00ADE0C8 /* AddExpenseView.swift in Sources */,
 				B0EB7E3C2FE0D555006B37EF /* Expense.swift in Sources */,
 				B0CDEA632FE243420064DCEB /* EditExpenseView.swift in Sources */,
