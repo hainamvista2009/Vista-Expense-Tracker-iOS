@@ -47,6 +47,7 @@ struct ContentView: View {
     @State private var searchText = ""
     @State private var selectedDateFilter: DateFilter = .all
     @State private var selectedCategory: CategoryFilter = .all
+    @State private var showSettings = false
     @AppStorage("selectedCurrency")
     private var selectedCurrency =
         Currency.usd.rawValue
@@ -349,7 +350,15 @@ struct ContentView: View {
                         EditButton()
                     }
                     
-                    ToolbarItem(placement: .navigationBarTrailing) {
+                    ToolbarItemGroup(
+                        placement: .navigationBarTrailing
+                    ) {
+
+                        Button {
+                            showSettings = true
+                        } label: {
+                            Image(systemName: "gearshape")
+                        }
 
                         Button {
                             showAddExpense = true
@@ -372,6 +381,11 @@ struct ContentView: View {
                         )
 
                     }
+
+                }
+                .sheet(isPresented: $showSettings) {
+
+                    SettingsView()
 
                 }
             }
