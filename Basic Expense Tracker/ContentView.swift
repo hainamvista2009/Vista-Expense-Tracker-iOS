@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Currency options for the app
 enum Currency: String, CaseIterable {
 
     case usd = "USD ($)"
@@ -17,6 +18,7 @@ enum Currency: String, CaseIterable {
 
 }
 
+// Date filter options for the expense list
 enum DateFilter: String, CaseIterable {
 
     case all = "All"
@@ -26,6 +28,7 @@ enum DateFilter: String, CaseIterable {
     //case year = "This Year"
 }
 
+// Category filter options for the expense list
 enum CategoryFilter: String, CaseIterable {
 
     case all = "All Categories"
@@ -52,6 +55,7 @@ struct ContentView: View {
     @AppStorage("currency_preference")
     private var selectedCurrency = "USD"
     
+    // Calculate total spent based on filtered expenses
     var totalSpent: Double {
 
         filteredExpenses.reduce(0) {
@@ -60,10 +64,12 @@ struct ContentView: View {
 
     }
     
+    // Function to delete an expense from the list
     func deleteExpense(at offsets: IndexSet) {
         expenses.remove(atOffsets: offsets)
     }
 
+    // Main view body
     var body: some View {
             NavigationStack {
                 VStack(spacing: 16) {
@@ -166,6 +172,7 @@ struct ContentView: View {
                     .pickerStyle(.segmented)
                     .padding(.horizontal)
                     
+                    // Category
                     Menu {
 
                         ForEach(
@@ -246,7 +253,7 @@ struct ContentView: View {
                         Spacer()
 
                     } else {
-
+                        // Group expenses by date and display in sections
                         List {
 
                             ForEach(
@@ -346,6 +353,8 @@ struct ContentView: View {
                 saveExpenses()
             }
         }
+
+    // Function to get the appropriate icon for each expense category
     func iconForCategory(_ category: String) -> String {
 
         switch category {
@@ -369,6 +378,8 @@ struct ContentView: View {
             return "wallet.pass.fill"
         }
     }
+
+    // Function to save expenses to UserDefaults
     func saveExpenses() {
 
         do {
@@ -386,6 +397,8 @@ struct ContentView: View {
 
         }
     }
+
+    // Function to load expenses from UserDefaults
     func loadExpenses() {
 
         guard let data =
@@ -411,6 +424,7 @@ struct ContentView: View {
         }
     }
     
+    // Calculate total spent per category based on filtered expenses
     var categoryTotals: [String: Double] {
 
         Dictionary(
@@ -425,6 +439,7 @@ struct ContentView: View {
 
     }
     
+    // Function to get a binding for a specific expense, used for editing
     func bindingForExpense(
         _ expense: Expense
     ) -> Binding<Expense>? {
@@ -440,6 +455,7 @@ struct ContentView: View {
         return $expenses[index]
     }
     
+    // Function to get the section title based on the date of the expenses
     func sectionTitle(for date: Date) -> String {
 
         let calendar = Calendar.current
@@ -459,6 +475,7 @@ struct ContentView: View {
 
     }
     
+    // Group expenses by date and sort them in descending order
     var groupedExpenses: [(Date, [Expense])] {
 
         let grouped = Dictionary(
@@ -478,6 +495,7 @@ struct ContentView: View {
 
     }
     
+    // Filter expenses based on selected date filter, category filter, and search text
     var filteredExpenses: [Expense] {
 
         let calendar = Calendar.current
@@ -573,6 +591,8 @@ struct ContentView: View {
         }
 
     }
+
+    // Function to get the appropriate currency symbol based on the selected currency
     func currencySymbol() -> String {
 
         switch selectedCurrency {
@@ -600,6 +620,7 @@ struct ContentView: View {
     }
 }
 
+// Preview provider for SwiftUI previews
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
