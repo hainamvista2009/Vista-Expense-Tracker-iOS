@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// The main entry point of the Basic Expense Tracker app, which sets up the initial view and scene for the application
 @main
 struct Basic_Expense_TrackerApp: App {
     var body: some Scene {

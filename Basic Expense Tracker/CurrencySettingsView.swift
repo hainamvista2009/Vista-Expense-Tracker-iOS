@@ -10,9 +10,11 @@ import SwiftUI
 
 struct CurrencySettingsView: View {
 
+    // Use @AppStorage to persist the selected currency across app launches
     @AppStorage("currency_preference")
     private var selectedCurrency = "USD"
 
+    // List of available currencies for selection
     let currencies = [
         "USD",
         "EUR",
@@ -21,8 +23,10 @@ struct CurrencySettingsView: View {
         "VND"
     ]
 
+    // The body of the view, which displays a list of currencies and allows the user to select one
     var body: some View {
 
+        // Use a List to display the available currencies
         List {
 
             ForEach(currencies, id: \.self) { currency in

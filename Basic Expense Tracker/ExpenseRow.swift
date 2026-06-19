@@ -10,12 +10,14 @@ import SwiftUI
 
 struct ExpenseRow: View {
 
+    // Properties to display the expense details in the row
     let icon: String
     let category: String
     let amount: String
     let note: String
     let createdAt: Date
     
+    // Computed property to format the createdAt date into a user-friendly string for display in the row
     private var formattedDate: String {
         
         let formatter = DateFormatter()
@@ -26,6 +28,7 @@ struct ExpenseRow: View {
         return formatter.string(from: createdAt)
     }
     
+    // The body of the view, which defines the layout and appearance of the expense row in the list
     var body: some View {
 
         HStack(alignment: .top) {
@@ -60,6 +63,7 @@ struct ExpenseRow: View {
     }
 }
 
+// Preview provider for SwiftUI previews, which allows us to see a preview of the ExpenseRow with some sample data
 struct ExpenseRow_Previews: PreviewProvider {
     static var previews: some View {
         ExpenseRow(

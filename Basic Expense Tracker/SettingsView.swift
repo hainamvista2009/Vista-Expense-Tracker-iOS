@@ -9,18 +9,22 @@ import Foundation
 import SwiftUI
 
 struct SettingsView: View {
+    // Use @AppStorage to persist the selected currency across app launches
     @AppStorage("currency_preference")
     private var selectedCurrency = "USD"
     
+    // Use @Environment to access the dismiss function, which allows us to close the view when the user is done editing
     @Environment(\.dismiss)
         private var dismiss
     
+    // The body of the view, which contains a list of settings options for the user to customize their preferences and view app information
     var body: some View {
 
         NavigationStack {
 
             List {
 
+                // Section for user preferences, which includes a navigation link to the currency settings view where the user can select their preferred currency for displaying expenses
                 Section("Preferences") {
 
                     NavigationLink {
@@ -46,7 +50,7 @@ struct SettingsView: View {
                     }
 
                 }
-
+                // Section for app information, which displays the current version of the app to the user
                 Section("About") {
 
                     HStack {
@@ -86,6 +90,7 @@ struct SettingsView: View {
 
 }
 
+// Preview provider for SwiftUI previews, which allows us to see a preview of the SettingsView in Xcode's canvas
 struct SettingsView_Previews: PreviewProvider {
 
     static var previews: some View {
