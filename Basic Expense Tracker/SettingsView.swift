@@ -17,6 +17,10 @@ struct SettingsView: View {
     @Environment(\.dismiss)
         private var dismiss
     
+    @Binding var expenses: [Expense]
+
+    @State private var showDeleteAlert = false
+    
     // The body of the view, which contains a list of settings options for the user to customize their preferences and view app information
     var body: some View {
 
@@ -50,6 +54,39 @@ struct SettingsView: View {
                     }
 
                 }
+                
+                Section("Reset") {
+
+                    Button(role: .destructive) {
+                        showDeleteAlert = true
+                    } label: {
+                        Label(
+                            "Clear All Expenses",
+                            systemImage: "trash"
+                        )
+                    }
+
+                }.alert(
+                    "Delete All Expenses?",
+                    isPresented: $showDeleteAlert
+                ) {
+
+                    Button("Cancel", role: .cancel) { }
+
+                    Button("Delete All", role: .destructive) {
+
+                        expenses.removeAll()
+
+                    }
+
+                } message: {
+
+                    Text(
+                        "This action cannot be undone."
+                    )
+
+                }
+                
                 // Section for app information, which displays the current version of the app to the user
                 Section("About") {
 
@@ -95,7 +132,9 @@ struct SettingsView_Previews: PreviewProvider {
 
     static var previews: some View {
 
-        SettingsView()
+        SettingsView(
+            expenses: .constant([])
+        )
 
     }
 

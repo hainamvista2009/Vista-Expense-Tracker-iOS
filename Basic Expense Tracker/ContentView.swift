@@ -330,7 +330,9 @@ struct ContentView: View {
                 }
                 .sheet(isPresented: $showSettings) {
 
-                    SettingsView()
+                    SettingsView(
+                        expenses: $expenses
+                    )   
 
                 }
             }
