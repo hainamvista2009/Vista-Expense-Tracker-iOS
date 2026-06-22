@@ -41,8 +41,10 @@ enum CategoryFilter: String, CaseIterable {
 }
 
 struct ContentView: View {
+    // Key for storing expenses in UserDefaults
     private let expensesKey = "savedExpenses"
     
+    // State variables for managing the app's state, including showing modals, selected expense, and filters
     @State private var showAddExpense = false
     @State private var selectedExpense: Expense?
     @State private var expenses: [Expense] = []
@@ -52,6 +54,7 @@ struct ContentView: View {
     @State private var selectedCategory: CategoryFilter = .all
     @State private var showSettings = false
     
+    // Use @AppStorage to persist the user's selected currency preference across app launches
     @AppStorage("currency_preference")
     private var selectedCurrency = "USD"
     
@@ -609,6 +612,7 @@ struct ContentView: View {
 
     }
     
+    // View displayed when there are no search results for the current filters
     var emptySearchView: some View {
 
         VStack(spacing: 16) {
@@ -639,6 +643,7 @@ struct ContentView: View {
 
     }
     
+    // View displayed when there are no expenses in the list
     var emptyExpensesView: some View {
 
         VStack(spacing: 16) {
