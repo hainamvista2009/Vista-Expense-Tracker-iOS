@@ -233,40 +233,25 @@ struct ContentView: View {
                     // Expense List
                     if expenses.isEmpty {
 
-                        Spacer()
+                        emptyExpensesView
 
-                        VStack(spacing: 16) {
+                    } else if filteredExpenses.isEmpty {
 
-                            Image(systemName: "tray")
-                                .font(.system(size: 60))
-                                .foregroundColor(.secondary)
-
-                            Text("No Expenses Yet")
-                                .font(.title2)
-                                .fontWeight(.semibold)
-
-                            Text("Tap + to add your first expense.")
-                                .foregroundColor(.secondary)
-
-                        }
-
-                        Spacer()
+                        emptySearchView
 
                     } else {
-                        // Group expenses by date and display in sections
+                        
                         List {
 
-                            ForEach(
-                                groupedExpenses,
-                                id: \.0
-                            ) { date, expensesForDay in
+                            ForEach(groupedExpenses, id: \.0) { date, expenses in
 
                                 Section(
-                                    header:
-                                        Text(sectionTitle(for: date))
+                                    header: Text(
+                                        sectionTitle(for: date)
+                                    )
                                 ) {
 
-                                    ForEach(expensesForDay) { expense in
+                                    ForEach(expenses) { expense in
 
                                         ExpenseRow(
                                             icon: iconForCategory(expense.category),
@@ -278,17 +263,20 @@ struct ContentView: View {
                                             note: expense.note,
                                             createdAt: expense.createdAt
                                         )
-                                        .contentShape(Rectangle())
                                         .onTapGesture {
+
                                             selectedExpense = expense
+
                                         }
 
                                     }
+                                    .onDelete(
+                                        perform: deleteExpense
+                                    )
 
                                 }
 
                             }
-                            .onDelete(perform: deleteExpense)
 
                         }
                         .listStyle(.plain)
@@ -614,6 +602,59 @@ struct ContentView: View {
 
         default:
             return "$"
+
+        }
+
+    }
+    
+    var emptySearchView: some View {
+
+        VStack(spacing: 16) {
+
+            Spacer()
+
+            Image(systemName: "magnifyingglass")
+                .font(.system(size: 60))
+                .foregroundColor(.secondary)
+
+            Text("No Results Found")
+                .font(.title2)
+                .fontWeight(.semibold)
+            Text(
+                "No results for \"\(searchText)\""
+            )
+            .foregroundColor(.secondary)
+
+            Text(
+                "Try a different keyword or clear your filters."
+            )
+            .multilineTextAlignment(.center)
+            .foregroundColor(.secondary)
+
+            Spacer()
+
+        }
+
+    }
+    
+    var emptyExpensesView: some View {
+
+        VStack(spacing: 16) {
+
+            Spacer()
+
+            Image(systemName: "tray")
+                .font(.system(size: 60))
+                .foregroundColor(.secondary)
+
+            Text("No Expenses Yet")
+                .font(.title2)
+                .fontWeight(.semibold)
+
+            Text("Tap + to add your first expense.")
+                .foregroundColor(.secondary)
+
+            Spacer()
 
         }
 
