@@ -53,6 +53,7 @@ struct ContentView: View {
     @State private var selectedDateFilter: DateFilter = .all
     @State private var selectedCategory: CategoryFilter = .all
     @State private var showSettings = false
+    @State private var selectedSort: SortOption = .newest
     
     // Use @AppStorage to persist the user's selected currency preference across app launches
     @AppStorage("currency_preference")
@@ -61,7 +62,7 @@ struct ContentView: View {
     // Calculate total spent based on filtered expenses
     var totalSpent: Double {
 
-        filteredExpenses.reduce(0) {
+        sortedExpenses.reduce(0) {
             $0 + $1.amount
         }
 
@@ -107,7 +108,7 @@ struct ContentView: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
 
-                        Text("\(filteredExpenses.count) expense(s)")
+                        Text("\(sortedExpenses.count) expense(s)")
                             .font(.caption)
                             .foregroundColor(.secondary)
 
@@ -233,12 +234,53 @@ struct ContentView: View {
                     }
                     .padding(.horizontal)
                     
+                    //
+                    Menu {
+
+                        ForEach(SortOption.allCases, id: \.self) { option in
+
+                            Button {
+
+                                selectedSort = option
+
+                            } label: {
+
+                                if selectedSort == option {
+
+                                    Label(
+                                        option.rawValue,
+                                        systemImage: "checkmark"
+                                    )
+
+                                } else {
+
+                                    Text(option.rawValue)
+
+                                }
+
+                            }
+
+                        }
+
+                    } label: {
+
+                        Label(
+                            selectedSort.rawValue,
+                            systemImage: "arrow.up.arrow.down"
+                        )
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+
+                    }
+                    
                     // Expense List
                     if expenses.isEmpty {
 
                         emptyExpensesView
 
-                    } else if filteredExpenses.isEmpty {
+                    } else if sortedExpenses.isEmpty {
 
                         emptySearchView
 
@@ -421,7 +463,7 @@ struct ContentView: View {
     var categoryTotals: [String: Double] {
 
         Dictionary(
-            grouping: filteredExpenses,
+            grouping: sortedExpenses,
             by: { $0.category }
         )
         .mapValues { expenses in
@@ -472,7 +514,7 @@ struct ContentView: View {
     var groupedExpenses: [(Date, [Expense])] {
 
         let grouped = Dictionary(
-            grouping: filteredExpenses
+            grouping: sortedExpenses
         ) { expense in
 
             Calendar.current.startOfDay(
@@ -662,6 +704,39 @@ struct ContentView: View {
                 .foregroundColor(.secondary)
 
             Spacer()
+
+        }
+
+    }
+    
+    //
+    var sortedExpenses: [Expense] {
+
+        switch selectedSort {
+
+        case .newest:
+
+            return filteredExpenses.sorted {
+                $0.createdAt > $1.createdAt
+            }
+
+        case .oldest:
+
+            return filteredExpenses.sorted {
+                $0.createdAt < $1.createdAt
+            }
+
+        case .highestAmount:
+
+            return filteredExpenses.sorted {
+                $0.amount > $1.amount
+            }
+
+        case .lowestAmount:
+
+            return filteredExpenses.sorted {
+                $0.amount < $1.amount
+            }
 
         }
 
