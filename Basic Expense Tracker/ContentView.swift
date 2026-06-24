@@ -72,7 +72,43 @@ struct ContentView: View {
     func deleteExpense(at offsets: IndexSet) {
         expenses.remove(atOffsets: offsets)
     }
+    
+    //
+    var highestExpense: Expense? {
+        expenses.max { $0.amount < $1.amount }
+    }
+    
+    //
+    var averageExpense: Double {
 
+        guard !expenses.isEmpty else {
+            return 0
+        }
+
+        return totalSpent / Double(expenses.count)
+
+    }
+    
+    //
+    var topCategory: String {
+
+        categoryTotals.max {
+            $0.value < $1.value
+        }?.key ?? "None"
+
+    }
+    
+    //
+    var categoryCount: Int {
+
+        Set(
+            expenses.map {
+                $0.category
+            }
+        ).count
+
+    }
+    
     // Main view body
     var body: some View {
             NavigationStack {
@@ -140,7 +176,66 @@ struct ContentView: View {
                             }
 
                         }
+                        
+                        if let highestExpense {
 
+                            HStack {
+
+                                Text("Highest Expense")
+
+                                Spacer()
+
+                                Text(
+                                    String(
+                                        format: "\(currencySymbol())%.2f",
+                                        highestExpense.amount
+                                    )
+                                )
+                                .fontWeight(.semibold)
+
+                            }
+
+                        }
+                        
+                        //
+                        HStack {
+
+                            Text("Average Expense")
+
+                            Spacer()
+
+                            Text(
+                                String(
+                                    format: "\(currencySymbol())%.2f",
+                                    averageExpense
+                                )
+                            )
+                            .fontWeight(.semibold)
+
+                        }
+                        
+                        //
+                        HStack {
+
+                            Text("Top Category")
+
+                            Spacer()
+
+                            Text(topCategory)
+                                .fontWeight(.semibold)
+
+                        }
+                        
+                        //
+                        HStack {
+
+                            Text("Categories Used")
+
+                            Spacer()
+
+                            Text("\(categoryCount)")
+
+                        }
                     }
                     .padding()
                     .background(Color(.systemGray6))
