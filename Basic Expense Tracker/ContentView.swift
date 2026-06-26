@@ -147,7 +147,8 @@ struct ContentView: View {
                         Text("\(sortedExpenses.count) expense(s)")
                             .font(.caption)
                             .foregroundColor(.secondary)
-
+                        
+                        //
                         if showCategoryTotals {
 
                             Divider()
@@ -174,68 +175,69 @@ struct ContentView: View {
                                 }
 
                             }
+                            //
+                            if let highestExpense {
 
-                        }
-                        
-                        if let highestExpense {
+                                HStack {
 
+                                    Text("Highest Expense")
+
+                                    Spacer()
+
+                                    Text(
+                                        String(
+                                            format: "\(currencySymbol())%.2f",
+                                            highestExpense.amount
+                                        )
+                                    )
+                                    .fontWeight(.semibold)
+
+                                }
+
+                            }
+                            
+                            //
                             HStack {
 
-                                Text("Highest Expense")
+                                Text("Average Expense")
 
                                 Spacer()
 
                                 Text(
                                     String(
                                         format: "\(currencySymbol())%.2f",
-                                        highestExpense.amount
+                                        averageExpense
                                     )
                                 )
                                 .fontWeight(.semibold)
 
                             }
+                            
+                            //
+                            HStack {
 
+                                Text("Top Category")
+
+                                Spacer()
+
+                                Text(topCategory)
+                                    .fontWeight(.semibold)
+
+                            }
+                            
+                            //
+                            HStack {
+
+                                Text("Categories Used")
+
+                                Spacer()
+
+                                Text("\(categoryCount)")
+
+                            }
                         }
                         
-                        //
-                        HStack {
-
-                            Text("Average Expense")
-
-                            Spacer()
-
-                            Text(
-                                String(
-                                    format: "\(currencySymbol())%.2f",
-                                    averageExpense
-                                )
-                            )
-                            .fontWeight(.semibold)
-
-                        }
                         
-                        //
-                        HStack {
-
-                            Text("Top Category")
-
-                            Spacer()
-
-                            Text(topCategory)
-                                .fontWeight(.semibold)
-
-                        }
-                        
-                        //
-                        HStack {
-
-                            Text("Categories Used")
-
-                            Spacer()
-
-                            Text("\(categoryCount)")
-
-                        }
                     }
                     .padding()
                     .background(Color(.systemGray6))
